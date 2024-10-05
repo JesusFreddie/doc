@@ -4,10 +4,6 @@ import { IsNotEmpty } from "class-validator";
 export class CreateOrderBodyRequest{
 	@ApiProperty()
 	@IsNotEmpty()
-	name: string;
-
-	@ApiProperty()
-	@IsNotEmpty()
 	count: number;
 
 	@ApiProperty()
@@ -21,12 +17,25 @@ export class CreateOrderBodyRequest{
 	@ApiProperty()
 	@IsNotEmpty()
 	orderListId: number
+
+	@ApiProperty()
+	distance: number;
 }
 
 export class CreateOrderResponse {
-	name: string;
+
+	@ApiProperty()
 	count: number;
-	weight: number
-	productId: number
-	orderListId: number
+
+	@ApiProperty()
+	weight: number;
+
+	@ApiProperty()
+	productId: number;
+
+	@ApiProperty()
+	orderListId: number;
+	
+	@ApiProperty()
+	distance: number;
 }

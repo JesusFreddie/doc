@@ -1,4 +1,4 @@
-import { Body, Controller, Get, HttpCode, HttpStatus, Param, ParseIntPipe, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, ParseIntPipe, Post } from '@nestjs/common';
 import { OrderService } from './order.service';
 import { CreateOrderBodyRequest, CreateOrderResponse } from './dto/dto';
 import { ApiCreatedResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
@@ -11,6 +11,7 @@ export class OrderController {
 	constructor(
 		private readonly orderService: OrderService
 	) {}
+
 	@Post()
 	@HttpCode(HttpStatus.CREATED)
 	@ApiCreatedResponse({
@@ -31,4 +32,16 @@ export class OrderController {
 	): Promise<Array<Order>> {
 		return this.orderService.getAll()
 	}
+
+	@Delete(':id')
+	@HttpCode(HttpStatus.OK)
+	@ApiOkResponse({
+		type: Number
+	})
+	public async delete(
+		@Param('id', ParseIntPipe) id: number
+	): Promise<number> {
+		return this.orderService.delete(id);
+	}
+
 }

@@ -25,22 +25,23 @@ model Order{
   
 	count Int
 	weight Decimal
+	distance Decimal
 
 	productId Int @map("product_id")
 	product Product @relation(fields: [productId], references: [id])
 
 	orderListId Int @map("order_list_id")
-	orderList OrderList @relation(fields: [orderListId], references: [id])
+	// orderList OrderList @relation(fields: [orderListId], references: [id])
 
   @@map("orders")
 }
 
-model OrderList{
-	id Int @id @default(autoincrement())
+// model OrderList{
+// 	id Int @id @default(autoincrement())
 	
-	order Order[]
-	@@map("order_lists")
-}
+// 	order Order[]
+// 	@@map("order_lists")
+// }
 
 model Car {
 	id Int @id @default(autoincrement())
@@ -48,6 +49,8 @@ model Car {
 	number String
 	liftingCapacity Decimal @map("lifting_capacity")
 	volume Decimal
+
+	isReady Boolean @default(true)
 
 	@@map("cars")
 }

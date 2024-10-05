@@ -12,7 +12,12 @@ export class CreateProductBodyRequest{
 }
 
 export class CreateProductResponse {
+	@ApiProperty()
 	id: number;
+
+	@ApiProperty()
 	name: string;
+
+	@ApiProperty()
 	address: number;
 }

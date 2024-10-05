@@ -1,6 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { Car, Prisma } from "@prisma/client";
-import { IsNotEmpty } from "class-validator";
+import { IsBoolean, IsNotEmpty } from "class-validator";
 
 export class CreateCarBodyRequest{
 	@ApiProperty()
@@ -14,6 +13,10 @@ export class CreateCarBodyRequest{
 	@ApiProperty()
 	@IsNotEmpty()
 	volume: number;
+
+	@ApiProperty()
+	@IsBoolean()
+	isReady: boolean;
 }
 
 export class CarResponse {
@@ -28,4 +31,7 @@ export class CarResponse {
 
 	@ApiProperty()
 	volume: number
+
+	@ApiProperty()
+	isReady: boolean;
 }

@@ -1,4 +1,4 @@
-import { Body, Controller, Get, HttpCode, HttpStatus, Param, ParseIntPipe, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, ParseIntPipe, Post } from '@nestjs/common';
 import { CarService } from './car.service';
 import { CreateCarBodyRequest, CarResponse } from './dto/dto';
 import { ApiCreatedResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
@@ -33,4 +33,14 @@ export class CarController {
 		return this.carService.getAll()
 	}
 	
+	@Delete(':id')
+	@HttpCode(HttpStatus.OK)
+	@ApiOkResponse({
+		type: Number
+	})
+	public async delete(
+		@Param('id', ParseIntPipe) id: number
+	): Promise<number> {
+		return await this.carService.delete(id);
+	}
 }
